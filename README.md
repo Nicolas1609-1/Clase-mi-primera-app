@@ -25,9 +25,9 @@ Soy estudiante y desarrollador en formación, enfocado en la creación de soluci
 👉 Aplicaciones web con enfoque modular
 
 ## 📫 Contacto
-- Email: tucorreo@example.com  
-- GitHub: github.com/tuusuario  
-- LinkedIn: (si tienes)
+- Email: nabello@unab.edu.co 
+- GitHub: https://github.com/Nicolas1609-1  
+
 
 ---
 
