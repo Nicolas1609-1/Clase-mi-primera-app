@@ -4,24 +4,15 @@
     <title>Tienda Tecnológica</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href= "./style.css">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('product') }}">
-            🛍️ TechStore
-        </a>
-        <a href="{{ url('product/create') }}" class="btn btn-outline-light">
-            + Crear Producto
-        </a>
-    </div>
-</nav>
+@include('layout.navbar')
 
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">Nuestros Productos</h2>
+<div class="container mt-5 mb-5">
+    <h2 class="text-center section-title">Nuestros Productos</h2>
 
     @php
         $products = [
@@ -36,11 +27,11 @@
     <div class="row">
         @foreach($products as $product)
             <div class="col-md-4 mb-4">
-                <div class="card shadow h-100">
-                    <img src="{{ $product['imagen'] }}" class="card-img-top" style="height:200px; object-fit:cover;">
-                    <div class="card-body">
-                        <h5>{{ $product['nombre'] }}</h5>
-                        <p class="text-muted">${{ $product['precio'] }}</p>
+                <div class="card product-card shadow-sm h-100">
+                    <img src="{{ $product['imagen'] }}" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="fw-bold">{{ $product['nombre'] }}</h5>
+                        <p class="text-muted fs-5">${{ $product['precio'] }}</p>
 
                         @if($product['estado'] == 'Disponible')
                             <span class="badge bg-success">Disponible</span>
@@ -59,6 +50,8 @@
         @endforeach
     </div>
 </div>
+
+@include('layout.footer')
 
 </body>
 </html>

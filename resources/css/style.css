@@ -1,0 +1,25 @@
+
+        body {
+            background: linear-gradient(to right, #eef2f3, #dfe9f3);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .detail-card {
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .detail-card img {
+            height: 420px;
+            object-fit: cover;
+        }
+
+        .price-tag {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .btn-custom {
+            padding: 10px 30px;
+            border-radius: 30px;
+        }
