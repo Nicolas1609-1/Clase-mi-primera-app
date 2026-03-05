@@ -1,62 +1,75 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Detalle Producto</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-</head>
-<body>
+@extends('layout.app')
 
-@include('layout.navbar')
-
-<div class="container mt-5 mb-5">
+@section('content')
 
 @php
 $products = [
-    1 => ['nombre'=>'Laptop Gamer','precio'=>2500,'descripcion'=>'Laptop Ryzen 7 16GB RAM RTX 3060','imagen'=>'https://images.unsplash.com/photo-1517336714731-489689fd1ca8','estado'=>'Disponible'],
-    2 => ['nombre'=>'iPhone 14','precio'=>3200,'descripcion'=>'iPhone 14 128GB','imagen'=>'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9','estado'=>'Disponible'],
-    3 => ['nombre'=>'Monitor Curvo','precio'=>900,'descripcion'=>'Monitor 27" Curvo Full HD','imagen'=>'https://images.unsplash.com/photo-1587829741301-dc798b83add3','estado'=>'Agotado'],
+    1 => ['nombre'=>'Laptop Gamer','precio'=>2500,'descripcion'=>'Laptop Ryzen 7','estado'=>'Disponible','img'=>'https://picsum.photos/600/400?1'],
+    2 => ['nombre'=>'iPhone 14','precio'=>3200,'descripcion'=>'iPhone 14','estado'=>'Disponible','img'=>'https://picsum.photos/600/400?2'],
+    3 => ['nombre'=>'Monitor Curvo','precio'=>900,'descripcion'=>'Monitor 27','estado'=>'Agotado','img'=>'https://picsum.photos/600/400?3'],
 ];
-
-$product = $products[$producto] ?? null;
 @endphp
 
-@if($product)
-<div class="card detail-card shadow-lg p-4">
-    <div class="row">
+<div class="container py-5">
+
+@if(isset($products[$producto]))
+
+<div class="card shadow-lg detail-card">
+
+    <div class="row g-0">
+
         <div class="col-md-6">
-            <img src="{{ $product['imagen'] }}" class="img-fluid rounded">
+            <img src="{{ $products[$producto]['img'] }}" class="img-fluid w-100">
         </div>
 
-        <div class="col-md-6">
-            <h2 class="fw-bold">{{ $product['nombre'] }}</h2>
-            <h3 class="text-primary price-tag">${{ $product['precio'] }}</h3>
+        <div class="col-md-6 p-4 d-flex flex-column justify-content-center">
 
-            <p class="mt-4">{{ $product['descripcion'] }}</p>
+            <h2 class="fw-bold mb-3">
+                {{ $products[$producto]['nombre'] }}
+            </h2>
 
-            @if($product['estado'] == 'Disponible')
-                <span class="badge bg-success fs-6">Disponible</span>
+            <p class="text-muted">
+                {{ $products[$producto]['descripcion'] }}
+            </p>
+
+            <div class="price-tag text-primary mb-3">
+                ${{ $products[$producto]['precio'] }}
+            </div>
+
+            @if($products[$producto]['estado'] == 'Disponible')
+
+                <span class="badge bg-success mb-4">
+                    Disponible
+                </span>
+
             @else
-                <span class="badge bg-danger fs-6">Agotado</span>
+
+                <span class="badge bg-danger mb-4">
+                    Agotado
+                </span>
+
             @endif
 
-            <div class="mt-4">
-                <a href="{{ url('product') }}" class="btn btn-dark btn-custom">
+            <div>
+                <a href="/productos" class="btn btn-dark btn-custom">
                     Volver
                 </a>
             </div>
+
         </div>
+
     </div>
+
 </div>
+
 @else
-<div class="alert alert-danger">
+
+<div class="alert alert-danger text-center">
     Producto no encontrado
 </div>
+
 @endif
 
 </div>
 
-@include('layout.footer')>
-
-</body>
-</html>
+@endsection

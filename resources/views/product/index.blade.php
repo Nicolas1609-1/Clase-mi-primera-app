@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Tienda Tecnológica</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+@extends('layout.app')
+@section('content')
 
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-
-</head>
-<body>
-
-@include('layout.navbar')
 
 <div class="container mt-5 mb-5">
     <h2 class="text-center section-title">Nuestros Productos</h2>
@@ -51,7 +42,4 @@
     </div>
 </div>
 
-@include('layout.footer')
-
-</body>
-</html>
+@endsection
