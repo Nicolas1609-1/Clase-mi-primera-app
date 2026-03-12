@@ -13,4 +13,6 @@ Route::get('/','index' )->name('product.index');
 Route::get('/create','create');
 Route::post('/store','store')->name('product.store');
 Route::get('/{producto}','show');
+Route::delete('/{product}','destroy') ->name('product.destroy');
+    
 });

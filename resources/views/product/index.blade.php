@@ -23,9 +23,13 @@
                         <p class="mt-2">{{ $product->description }}</p>
 
                         <div class="mt-3">
-                            <a href="{{ url('product/'.$product->id) }}" class="btn btn-dark w-100">
-                                Ver Detalle
-                            </a>
+                            <button class="btn btn-secondqry">Editar</button>
+                            <button class="btn btn-secondqry">Detalles</button>
+                            <form action="{{ route('product.destroy',$product)}}"method="post">
+                                @method('delete')
+                                @csrf
+                            <button class="btn btn-secondqry">Eliminar</button>
+                            
                         </div>
                     </div>
                 </div>
