@@ -12,21 +12,41 @@
             <div class="mb-3">
                 <label class="form-label">Nombre</label>
                 <input type="text" name="nombre" class="form-control">
+                @error('nombre')
+                <span style="color: red; font-size:14px">
+                 {{ $message}}
+                </span>    
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Precio</label>
                 <input type="number" name="precio" class="form-control">
+                   @error('precio')
+                <span style="color: red; font-size:14px">
+                 {{ $message}}
+                </span>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Descripción</label>
                 <textarea name="descripcion" class="form-control"></textarea>
+                 @error('descripcion')
+                <span style="color: red; font-size:14px">
+                 {{ $message}}
+                </span>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Imagen (URL)</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
+                 @error('imagen')
+                <span style="color: red; font-size:14px">
+                 {{ $message}}
+                </span>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -36,6 +56,11 @@
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
+                 @error('categoria')
+                <span style="color: red; font-size:14px">
+                 {{ $message}}
+                </span>
+                @enderror
             </div>
 
             <button type="submit" class="btn-submit">

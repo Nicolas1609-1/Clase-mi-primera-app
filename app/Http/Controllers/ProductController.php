@@ -26,6 +26,18 @@ class ProductController extends Controller
     }
 
     public function store(Request $request){
+
+    //Validacion
+
+    $request->validate([
+        'nombre' => 'required|min:5|max:250',
+        'precio' => 'required|numeric',
+        'descripcion' => 'required',
+        'imagen' => 'required|image',
+        'Categoria' => 'required|exists:categories, id'
+
+    ]);
+    
         //dd($request->all());
 
         $newProduct = new Product();
