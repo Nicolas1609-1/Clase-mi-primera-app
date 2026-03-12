@@ -6,40 +6,41 @@
     <div class="card shadow-lg p-5 form-card">
         <h3 class="mb-4 text-center fw-bold">Registrar Nuevo Producto</h3>
 
-        <form>
+        <form action="{{ url('product/store') }}" method="POST">
+            @csrf
+
             <div class="mb-3">
                 <label class="form-label">Nombre</label>
-                <input type="text" class="form-control">
+                <input type="text" name="nombre" class="form-control">
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Precio</label>
-                <input type="number" class="form-control">
+                <input type="number" name="precio" class="form-control">
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Descripción</label>
-                <textarea class="form-control"></textarea>
+                <textarea name="descripcion" class="form-control"></textarea>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Imagen (URL)</label>
-                <input type="text" class="form-control">
+                <input type="text" name="imagen" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Estado</label>
-                <select class="form-select">
-                    <option>Disponible</option>
-                    <option>Agotado</option>
+                <label for="estado" class="form-label">Categoria</label>
+                <select id="estado" name="categoria" class="form-select">
+                    @foreach ($categoryList as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
                 </select>
             </div>
 
-            <button class="btn btn-dark w-100 btn-save">Guardar</button>
-
-            <a href="{{ url('product') }}" class="btn btn-secondary w-100 mt-3 btn-save">
-                Volver
-            </a>
+            <button type="submit" class="btn-submit">
+                Guardar Producto
+            </button>
         </form>
     </div>
 </div>
