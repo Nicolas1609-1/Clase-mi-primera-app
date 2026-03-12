@@ -8,7 +8,11 @@
         @foreach($misProductos as $product)
             <div class="col-md-4 mb-4">
                 <div class="card product-card shadow-sm h-100">
+                    @if($product->image)
+                    <img src="{{asset('storage/'.$product->image)}}">
+                    @else
                     <img src="https://cdn.mos.cms.futurecdn.net/MwkqZ8bCRNY4zK4yR8JTHX.jpg">
+                    @endif
 
                     <div class="card-body text-center">
                         <h5 class="fw-bold">{{ $product->name }}</h5>

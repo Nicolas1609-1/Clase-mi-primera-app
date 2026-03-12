@@ -6,7 +6,7 @@
     <div class="card shadow-lg p-5 form-card">
         <h3 class="mb-4 text-center fw-bold">Registrar Nuevo Producto</h3>
 
-        <form action="{{ url('product/store') }}" method="POST">
+        <form action="{{ url('product/store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -26,7 +26,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Imagen (URL)</label>
-                <input type="text" name="imagen" class="form-control">
+                <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
             </div>
 
             <div class="mb-3">
