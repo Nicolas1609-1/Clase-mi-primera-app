@@ -14,5 +14,10 @@ Route::get('/create','create');
 Route::post('/store','store')->name('product.store');
 Route::get('/{producto}','show');
 Route::delete('/{product}','destroy') ->name('product.destroy');
+
     
+});
+
+Route::get('/admin', function () {
+    return view('admin.dashboard');
 });
