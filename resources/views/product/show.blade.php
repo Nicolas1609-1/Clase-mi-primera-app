@@ -2,74 +2,174 @@
 
 @section('content')
 
-@php
-$products = [
-    1 => ['nombre'=>'Laptop Gamer','precio'=>2500,'descripcion'=>'Laptop Ryzen 7','estado'=>'Disponible','img'=>'https://picsum.photos/600/400?1'],
-    2 => ['nombre'=>'iPhone 14','precio'=>3200,'descripcion'=>'iPhone 14','estado'=>'Disponible','img'=>'https://picsum.photos/600/400?2'],
-    3 => ['nombre'=>'Monitor Curvo','precio'=>900,'descripcion'=>'Monitor 27','estado'=>'Agotado','img'=>'https://picsum.photos/600/400?3'],
-];
-@endphp
+<style>
+    .show-section {
+        background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+        min-height: 100vh;
+        padding: 60px 0;
+    }
 
-<div class="container py-5">
+    .product-detail-card {
+        background: #ffffff;
+        border: none;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+    }
 
-@if(isset($products[$producto]))
+    .product-image-box {
+        background: linear-gradient(135deg, #0f172a, #1d4ed8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 500px;
+        padding: 30px;
+    }
 
-<div class="card shadow-lg detail-card">
+    .product-image-box img {
+        max-height: 380px;
+        width: 100%;
+        object-fit: contain;
+        border-radius: 18px;
+        background: white;
+        padding: 20px;
+    }
 
-    <div class="row g-0">
+    .product-info {
+        padding: 50px 40px;
+    }
 
-        <div class="col-md-6">
-            <img src="{{ $products[$producto]['img'] }}" class="img-fluid w-100">
-        </div>
+    .product-tag {
+        display: inline-block;
+        background: #dbeafe;
+        color: #1d4ed8;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 18px;
+    }
 
-        <div class="col-md-6 p-4 d-flex flex-column justify-content-center">
+    .product-title {
+        font-size: 42px;
+        font-weight: 800;
+        color: #0f172a;
+        margin-bottom: 18px;
+    }
 
-            <h2 class="fw-bold mb-3">
-                {{ $products[$producto]['nombre'] }}
-            </h2>
+    .product-description {
+        color: #475569;
+        font-size: 18px;
+        line-height: 1.7;
+        margin-bottom: 24px;
+    }
 
-            <p class="text-muted">
-                {{ $products[$producto]['descripcion'] }}
-            </p>
+    .product-price {
+        font-size: 34px;
+        font-weight: 800;
+        color: #2563eb;
+        margin-bottom: 25px;
+    }
 
-            <div class="price-tag text-primary mb-3">
-                ${{ $products[$producto]['precio'] }}
+    .product-extra {
+        background: #f8fafc;
+        border-radius: 16px;
+        padding: 18px 20px;
+        margin-bottom: 30px;
+        color: #334155;
+    }
+
+    .btn-tech {
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 12px;
+        transition: 0.3s ease;
+    }
+
+    .btn-primary-tech {
+        background: #2563eb;
+        color: white;
+    }
+
+    .btn-primary-tech:hover {
+        background: #1d4ed8;
+        color: white;
+    }
+
+    .btn-dark-tech {
+        background: #0f172a;
+        color: white;
+    }
+
+    .btn-dark-tech:hover {
+        background: #1e293b;
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .product-title {
+            font-size: 30px;
+        }
+
+        .product-info {
+            padding: 30px 24px;
+        }
+
+        .product-image-box {
+            min-height: 320px;
+        }
+    }
+</style>
+
+<section class="show-section">
+    <div class="container">
+        <div class="card product-detail-card">
+            <div class="row g-0">
+                
+                <div class="col-md-6">
+                    <div class="product-image-box">
+                        @if($producto->image)
+                            <img src="{{ asset('storage/' . $producto->image) }}" alt="{{ $producto->name }}">
+                        @else
+                            <img src="https://cdn.mos.cms.futurecdn.net/MwkqZ8bCRNY4zK4yR8JTHX.jpg" alt="{{ $producto->name }}">
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="product-info">
+                        <span class="product-tag">Producto destacado</span>
+
+                        <h1 class="product-title">{{ $producto->name }}</h1>
+
+                        <p class="product-description">
+                            {{ $producto->description }}
+                        </p>
+
+                        <div class="product-price">
+                            ${{ $producto->price }}
+                        </div>
+
+                        <div class="product-extra">
+                            Ideal para usuarios que buscan tecnología moderna, rendimiento y una experiencia de compra simple en TechStore.
+                        </div>
+
+                        <a href="{{ route('product.index') }}" class="btn-tech btn-dark-tech">
+                            Volver a productos
+                        </a>
+
+                        <a href="{{ route('product.index') }}" class="btn-tech btn-primary-tech">
+                            Seguir comprando
+                        </a>
+                    </div>
+                </div>
+
             </div>
-
-            @if($products[$producto]['estado'] == 'Disponible')
-
-                <span class="badge bg-success mb-4">
-                    Disponible
-                </span>
-
-            @else
-
-                <span class="badge bg-danger mb-4">
-                    Agotado
-                </span>
-
-            @endif
-
-            <div>
-                <a href="/productos" class="btn btn-dark btn-custom">
-                    Volver
-                </a>
-            </div>
-
         </div>
-
     </div>
-
-</div>
-
-@else
-
-<div class="alert alert-danger text-center">
-    Producto no encontrado
-</div>
-
-@endif
-
-</div>
+</section>
 
 @endsection
