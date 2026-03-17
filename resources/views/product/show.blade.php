@@ -128,7 +128,8 @@
     <div class="container">
         <div class="card product-detail-card">
             <div class="row g-0">
-                
+
+                {{-- Imagen del producto --}}
                 <div class="col-md-6">
                     <div class="product-image-box">
                         @if($producto->image)
@@ -139,11 +140,15 @@
                     </div>
                 </div>
 
+                {{-- Información del producto --}}
                 <div class="col-md-6">
                     <div class="product-info">
+
                         <span class="product-tag">Producto destacado</span>
 
-                        <h1 class="product-title">{{ $producto->name }}</h1>
+                        <h1 class="product-title">
+                            {{ $producto->name }}
+                        </h1>
 
                         <p class="product-description">
                             {{ $producto->description }}
@@ -153,10 +158,20 @@
                             ${{ $producto->price }}
                         </div>
 
+                        {{-- Botón agregar al carrito --}}
+                        <form action="{{ route('cart.add', $producto) }}" method="POST" class="mb-3">
+                            @csrf
+                            <button type="submit" class="btn-tech btn-primary-tech" style="border:none; cursor:pointer;">
+                                🛒 Agregar al carrito
+                            </button>
+                        </form>
+
+                        {{-- Información adicional --}}
                         <div class="product-extra">
                             Ideal para usuarios que buscan tecnología moderna, rendimiento y una experiencia de compra simple en TechStore.
                         </div>
 
+                        {{-- Navegación --}}
                         <a href="{{ route('product.index') }}" class="btn-tech btn-dark-tech">
                             Volver a productos
                         </a>
@@ -164,6 +179,7 @@
                         <a href="{{ route('product.index') }}" class="btn-tech btn-primary-tech">
                             Seguir comprando
                         </a>
+
                     </div>
                 </div>
 
